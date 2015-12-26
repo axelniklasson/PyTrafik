@@ -33,9 +33,10 @@ The new API uses OAuth2 as authorization and in order to acquire CONSUMER_KEY an
 
 ## API
 ### Avaliable endpoints
-```get_arrivals(stop)```
+```
+get_arrivals(stop)
 
-```get_departures(stop)```
+get_departures(stop)
 
-```search_stops(query)```
-
+search_stops(query)
+```
