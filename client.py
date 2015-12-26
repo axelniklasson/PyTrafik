@@ -27,20 +27,28 @@ class Client:
 	def __init__(self):
 		self.token = fetchToken()
 
-	def search_stops(self, query):
-		data = self.get('/location.name?input=' + query + FORMAT)
-		return data['LocationList']['StopLocation']
-
+	def get_arrivals(self, stopID):
+		data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
+			'&time=' + time.strftime("%H:%M") + FORMAT)
+		return data['ArrivalBoard']['Arrival']
 
 	def get_departures(self, stopID):
 		data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
 			'&time=' + time.strftime("%H:%M") + FORMAT)
 		return data['DepartureBoard']['Departure']
 
+	def search_stops(self, query):
+		data = self.get('/location.name?input=' + query + FORMAT)
+		return data['LocationList']['StopLocation']
+
 	def get(self, endpoint):
 		url = API_BASE_URL + endpoint
 		headers = {
 			'Authorization': 'Bearer ' + self.token
 		}
+
 		res = requests.get(url, headers=headers)
-		return json.loads(res.content, 'UTF-8')
+		if res.status_code == 200:
+			return json.loads(res.content, 'UTF-8')
+		else:
+			raise Exception('Error: ' + str(res.status_code) + res.read())
