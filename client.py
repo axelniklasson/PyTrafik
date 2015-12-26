@@ -29,20 +29,13 @@ class Client:
 
 	def search_stops(self, query):
 		data = self.get('/location.name?input=' + query + FORMAT)
-		stopsArr = data['LocationList']['StopLocation']
+		return data['LocationList']['StopLocation']
 
-		arr = []
-		for stop in stopsArr:
-			s = {}
-			s['name'] = stop['name']
-			s['id'] = stop['id']
-			arr.append(s)
-		return arr
 
 	def get_departures(self, stopID):
 		data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
 			'&time=' + time.strftime("%H:%M") + FORMAT)
-		print data
+		return data['DepartureBoard']['Departure']
 
 	def get(self, endpoint):
 		url = API_BASE_URL + endpoint
