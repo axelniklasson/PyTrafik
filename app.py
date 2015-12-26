@@ -19,7 +19,7 @@ for dep in departures:
 	row = []
 	row.append(dep['name'])
 	row.append(dep['direction'])
-	row.append(dep['rtTime'])
+	row.append(dep['time'])
 	row.append(dep['track'])
 	table.append(row)
 
