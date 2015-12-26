@@ -39,8 +39,10 @@ class Client:
 			arr.append(s)
 		return arr
 
-	def get_departures(self, xstopID):
-		return 'bar'
+	def get_departures(self, stopID):
+		data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
+			'&time=' + time.strftime("%H:%M") + FORMAT)
+		print data
 
 	def get(self, endpoint):
 		url = API_BASE_URL + endpoint
@@ -49,35 +51,3 @@ class Client:
 		}
 		res = requests.get(url, headers=headers)
 		return json.loads(res.content, 'UTF-8')
-
-
-# print '\n### API Client ###\n'
-
-# query = raw_input('Where are you? ')
-# fetchStopsUrl = API_URL + 'location.name?input=' + query + '&format=json'
-# headers = {
-# 	'Authorization': 'Bearer ' + access_token
-# }
-# response = requests.get(fetchStopsUrl, headers=headers)
-# obj = json.loads(response.content, 'UTF-8')
-# stopsArr = obj['LocationList']['StopLocation']
-
-# print '\n## Results'
-# for i in range(len(stopsArr)):
-# 	stop = stopsArr[i]
-# 	print stop['name'] + ' [' + str(i+1) + ']'
-
-# index = raw_input('\nPlease choose your location: ')
-# ID = stopsArr[int(index)]['id']
-# fetchDeparturesUrl = API_URL + 'departureBoard?id=' + ID + '&date=' + time.strftime("%Y-%m-%d") + '&time=' + time.strftime("%H:%M") + '&format=json'
-
-# response = requests.get(fetchDeparturesUrl, headers=headers)
-# obj = json.loads(response.content, 'UTF-8')
-
-# departuresArr = obj['DepartureBoard']['Departure']
-
-# print '\n## Departures\n'
-# for departure in departuresArr:
-# 	print departure['name'] + ' --> ' + departure['direction'] + ' @ ' + departure['time'] + ' from track ' + departure['track']
-
-# print '\n'
