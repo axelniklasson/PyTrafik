@@ -24,7 +24,7 @@ source env/bin/activate
 ```
 Install the required libraries
 ```
-pip install -r reqs.txt
+pip install -r etc/reqs.txt
 ```
 Done!
 

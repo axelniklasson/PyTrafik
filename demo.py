@@ -4,7 +4,7 @@
 from client import Client
 from tabulate import tabulate
 
-client = Client()
+client = Client(format='JSON')
 
 print '\n### API Wrapper DEMO ###'
 
