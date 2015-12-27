@@ -8,7 +8,7 @@ client = Client(format='JSON')
 
 print '\n### API Wrapper DEMO ###'
 
-stops = client.search_stops('Brunnsparken')
+stops = client.get_stops_by_name('Brunnsparken')
 print '\n### Search results for "Brunnsparken" ###'
 for stop in stops:
 	print stop['name']

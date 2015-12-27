@@ -30,22 +30,47 @@ class Client:
 		else:
 			self.format = ''
 
-	def get_arrivals(self, stopID):
-		data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
-			'&time=' + time.strftime("%H:%M") + self.format)
-		return data['ArrivalBoard']['Arrival']
+	## /journeyDetail endpoint
+	def get_journey_detail(self, ref):
+		return ''
 
-	def get_departures(self, stopID):
-		data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
-			'&time=' + time.strftime("%H:%M") + self.format)
-		return data['DepartureBoard']['Departure']
+	## /location endpoint
+	# /location.allstops
+	def get_all_stops(self):
+		return ''
 
-	def search_stops(self, query):
-		data = self.get('/location.name?input=' + query + self.format)
+	# /location.nearbystops
+	def get_nearby_stops(self, lat, long):
+		return ''
+
+	# /location.name
+	def get_stops_by_name(self, query):
+		data = self.get('/location.name?input=' + query)
 		return data['LocationList']['StopLocation']
 
+	# /location.nearbyaddress
+	def get_nearby_address(self, lat, long):
+		return ''
+
+	## /arrivalBoard endpoint
+	def get_arrivals(self, stopID):
+		data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
+			'&time=' + time.strftime("%H:%M"))
+		return data['ArrivalBoard']['Arrival']
+
+	## /departureBoard endpoint
+	def get_departures(self, stopID):
+		data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
+			'&time=' + time.strftime("%H:%M"))
+		return data['DepartureBoard']['Departure']
+
+	## /trip endpoint
+	def calculate_trip(self, params):
+		return ''
+
+	## request builder
 	def get(self, endpoint):
-		url = API_BASE_URL + endpoint
+		url = API_BASE_URL + endpoint + self.format
 		headers = {
 			'Authorization': 'Bearer ' + self.token
 		}
