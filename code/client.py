@@ -77,7 +77,7 @@ class Client:
 
 	## request builder
 	def get(self, endpoint, query_params=None):
-		url = API_BASE_URL + endpoint + self.format
+		url = API_BASE_URL + endpoint + self.format		
 
 		if query_params is not None:
 			for key in query_params:
