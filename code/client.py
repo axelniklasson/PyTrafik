@@ -7,7 +7,7 @@ TOKEN_URL = 'https://api.vasttrafik.se/token'
 API_BASE_URL = 'https://api.vasttrafik.se/bin/rest.exe/v2'
 
 def fetchToken():
-	f = open('etc/credentials.txt', 'r')
+	f = open('code/credentials.txt', 'r')
 	CONSUMER_KEY = f.readline().split('\'')[1]
 	CONSUMER_SECRET = f.readline().split('\'')[1]
 
