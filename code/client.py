@@ -12,7 +12,7 @@ def fetchToken():
 	CONSUMER_SECRET = f.readline().split('\'')[1]
 
 	headers = {
-		'Content-qType': 'application/x-www-form-urlencoded',
+		'Content-Type': 'application/x-www-form-urlencoded',
 		'Authorization': 'Basic ' + base64.b64encode(CONSUMER_KEY + ':' + CONSUMER_SECRET)
 	}
 	data = {'grant_type': 'client_credentials'}
