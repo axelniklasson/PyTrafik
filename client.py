@@ -1,7 +1,7 @@
 import requests
 import base64
 import json
-import time
+import time as time_module
 
 TOKEN_URL = 'https://api.vasttrafik.se/token'
 API_BASE_URL = 'https://api.vasttrafik.se/bin/rest.exe/v2'
@@ -28,49 +28,61 @@ class Client:
 		if format == 'JSON':
 			self.format = '&format=json'
 		else:
+			# default is XML
 			self.format = ''
 
 	## /journeyDetail endpoint
-	def get_journey_detail(self, ref):
+	def get_journey_detail(self, ref, query_params=None):
 		return ''
 
 	## /location endpoint
 	# /location.allstops
-	def get_all_stops(self):
+	def get_all_stops(self, query_params=None):
 		return ''
 
 	# /location.nearbystops
-	def get_nearby_stops(self, lat, long):
+	def get_nearby_stops(self, lat, long, query_params=None):
 		return ''
 
 	# /location.name
-	def get_stops_by_name(self, query):
+	def get_stops_by_name(self, query, query_params=None):
 		data = self.get('/location.name?input=' + query)
 		return data['LocationList']['StopLocation']
 
 	# /location.nearbyaddress
-	def get_nearby_address(self, lat, long):
+	def get_nearby_address(self, lat, long, query_params=None):
 		return ''
 
 	## /arrivalBoard endpoint
-	def get_arrivals(self, stopID):
-		data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
-			'&time=' + time.strftime("%H:%M"))
+	def get_arrivals(self, stopID, date=None, time=None, query_params=None):
+		if date is not None and time is not None:
+			data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + date + '&time=' + time)
+		else:
+			data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + time_module.strftime("%Y-%m-%d") + 
+			'&time=' + time_module.strftime("%H:%M"))
 		return data['ArrivalBoard']['Arrival']
 
 	## /departureBoard endpoint
-	def get_departures(self, stopID):
-		data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time.strftime("%Y-%m-%d") + 
-			'&time=' + time.strftime("%H:%M"))
+	def get_departures(self, stopID, date=None, time=None, query_params=None):
+		if date is not None and time is not None:
+			data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + date + '&time=' + time)
+		else:
+			data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time_module.strftime("%Y-%m-%d") + 
+			'&time=' + time_module.strftime("%H:%M"))
 		return data['DepartureBoard']['Departure']
 
 	## /trip endpoint
-	def calculate_trip(self, params):
+	def calculate_trip(self, query_params=None):
 		return ''
 
 	## request builder
-	def get(self, endpoint):
+	def get(self, endpoint, query_params=None):
 		url = API_BASE_URL + endpoint + self.format
+
+		if query_params is not None:
+			for key in query_params:
+				url += '&' + key + '=' + query_params[key]
+
 		headers = {
 			'Authorization': 'Bearer ' + self.token
 		}
