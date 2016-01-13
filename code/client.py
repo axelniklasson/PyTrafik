@@ -5,12 +5,10 @@ import time as time_module
 
 TOKEN_URL = 'https://api.vasttrafik.se/token'
 API_BASE_URL = 'https://api.vasttrafik.se/bin/rest.exe/v2'
+CONSUMER_KEY = '<insert your CONSUMER_KEY here>'
+CONSUMER_SECRET = '<insert your CONSUMER_SECRET here>'
 
 def fetchToken():
-	f = open('code/credentials.txt', 'r')
-	CONSUMER_KEY = f.readline().split('\'')[1]
-	CONSUMER_SECRET = f.readline().split('\'')[1]
-
 	headers = {
 		'Content-Type': 'application/x-www-form-urlencoded',
 		'Authorization': 'Basic ' + base64.b64encode(CONSUMER_KEY + ':' + CONSUMER_SECRET)
