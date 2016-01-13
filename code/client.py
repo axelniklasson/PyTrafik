@@ -36,8 +36,7 @@ class Client:
 	## /location endpoint
 	# /location.allstops
 	def get_all_stops(self, query_params=None):
-		data = self.get('/location.allstops', query_params)
-		print data
+		raise Exception('Error: Can\'t get this endpoint to work. No idea why. Should be implemented in future.')
 
 	# /location.nearbystops
 	def get_nearby_stops(self, lat, long, query_params=None):
