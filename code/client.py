@@ -36,37 +36,40 @@ class Client:
 	## /location endpoint
 	# /location.allstops
 	def get_all_stops(self, query_params=None):
-		return ''
+		data = self.get('/location.allstops', query_params)
+		print data
 
 	# /location.nearbystops
 	def get_nearby_stops(self, lat, long, query_params=None):
-		return ''
+		data = self.get('/location.nearbystops?originCoordLat=' + str(lat) + '&originCoordLong=' + str(long))
+		return data['LocationList']['StopLocation']
 
 	# /location.name
 	def get_stops_by_name(self, query, query_params=None):
-		data = self.get('/location.name?input=' + query)
+		data = self.get('/location.name?input=' + query, query_params)
 		return data['LocationList']['StopLocation']
 
 	# /location.nearbyaddress
 	def get_nearby_address(self, lat, long, query_params=None):
-		return ''
+		data = self.get('/location.name?input=' + query, query_params)
+		return data['LocationList']['CoordLocation']
 
 	## /arrivalBoard endpoint
 	def get_arrivals(self, stopID, date=None, time=None, query_params=None):
 		if date is not None and time is not None:
-			data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + date + '&time=' + time)
+			data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + date + '&time=' + time, query_params)
 		else:
 			data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + time_module.strftime("%Y-%m-%d") + 
-			'&time=' + time_module.strftime("%H:%M"))
+			'&time=' + time_module.strftime("%H:%M"), query_params)
 		return data['ArrivalBoard']['Arrival']
 
 	## /departureBoard endpoint
 	def get_departures(self, stopID, date=None, time=None, query_params=None):
 		if date is not None and time is not None:
-			data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + date + '&time=' + time)
+			data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + date + '&time=' + time, query_params)
 		else:
 			data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time_module.strftime("%Y-%m-%d") + 
-			'&time=' + time_module.strftime("%H:%M"))
+			'&time=' + time_module.strftime("%H:%M"), query_params)
 		return data['DepartureBoard']['Departure']
 
 	## /trip endpoint
@@ -89,4 +92,4 @@ class Client:
 		if res.status_code == 200:
 			return json.loads(res.content, 'UTF-8')
 		else:
-			raise Exception('Error: ' + str(res.status_code) + res.read())
+			raise Exception('Error: ' + str(res.status_code) + str(res.content))
