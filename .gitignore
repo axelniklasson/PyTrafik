@@ -1,4 +1,3 @@
 *.pyc
 .DS_Store
 env/
-code/credentials.txt
