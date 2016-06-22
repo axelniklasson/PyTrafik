@@ -9,10 +9,10 @@ CONSUMER_KEY = '<insert your CONSUMER_KEY here>'
 CONSUMER_SECRET = '<insert your CONSUMER_SECRET here>'
 
 
-def fetchToken():
+def fetchToken(key, secret):
 	headers = {
 		'Content-Type': 'application/x-www-form-urlencoded',
-		'Authorization': 'Basic ' + base64.b64encode((CONSUMER_KEY + ':' + CONSUMER_SECRET).encode()).decode()
+		'Authorization': 'Basic ' + base64.b64encode((key + ':' + secret).encode()).decode()
 	}
 	data = {'grant_type': 'client_credentials'}
 
@@ -22,8 +22,8 @@ def fetchToken():
 
 class Client:
 
-	def __init__(self, format):
-		self.token = fetchToken()
+	def __init__(self, format, key=CONSUMER_KEY, secret=CONSUMER_SECRET):
+		self.token = fetchToken(key, secret)
 		if format == 'JSON':
 			self.format = '&format=json'
 		else:
