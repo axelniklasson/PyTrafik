@@ -8,15 +8,16 @@ API_BASE_URL = 'https://api.vasttrafik.se/bin/rest.exe/v2'
 CONSUMER_KEY = '<insert your CONSUMER_KEY here>'
 CONSUMER_SECRET = '<insert your CONSUMER_SECRET here>'
 
+
 def fetchToken():
 	headers = {
 		'Content-Type': 'application/x-www-form-urlencoded',
-		'Authorization': 'Basic ' + base64.b64encode(CONSUMER_KEY + ':' + CONSUMER_SECRET)
+		'Authorization': 'Basic ' + base64.b64encode((CONSUMER_KEY + ':' + CONSUMER_SECRET).encode()).decode()
 	}
 	data = {'grant_type': 'client_credentials'}
 
 	response = requests.post(TOKEN_URL, data=data, headers=headers)
-	obj = json.loads(response.content)
+	obj = json.loads(response.content.decode('UTF-8'))
 	return obj['access_token']
 
 class Client:
@@ -86,9 +87,8 @@ class Client:
 		headers = {
 			'Authorization': 'Bearer ' + self.token
 		}
-
 		res = requests.get(url, headers=headers)
 		if res.status_code == 200:
-			return json.loads(res.content, 'UTF-8')
+			return json.loads(res.content.decode('UTF-8'), 'UTF-8')
 		else:
 			raise Exception('Error: ' + str(res.status_code) + str(res.content))
