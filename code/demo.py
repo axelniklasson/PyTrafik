@@ -1,23 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 
 from client import Client
 from tabulate import tabulate
 
 client = Client(format='JSON')
 
-print '\n### API Wrapper DEMO ###'
+print('\n### API Wrapper DEMO ###')
 
 stops = client.get_stops_by_name('Brunnsparken')
-print '\n### Search results for "Brunnsparken" ###'
+print('\n### Search results for "Brunnsparken" ###')
 for stop in stops:
-	print stop['name']
+	print(stop['name'])
 stop = stops[0]
 stop_id = stop['id']
 stop_name = stop['name']
 
 arrivals = client.get_arrivals(stop_id)
-print '\n### Arrivals at ' + stop_name + ' ###'
+print('\n### Arrivals at ' + stop_name + ' ###')
 table = []
 for arr in arrivals:
 	row = []
@@ -28,11 +29,11 @@ for arr in arrivals:
 	table.append(row)
 
 headers = ['Name', 'Origin', 'Time', 'Track']
-print tabulate(table, headers=headers)
-print '\n'
+print(tabulate(table, headers=headers))
+print('\n')
 
 departures = client.get_departures(stop_id)
-print '\n### Departures from ' + stop_name + ' ###'
+print('\n### Departures from ' + stop_name + ' ###')
 table = []
 for dep in departures:
 	row = []
@@ -43,5 +44,5 @@ for dep in departures:
 	table.append(row)
 
 headers = ['Name', 'Destination', 'Time', 'Track']
-print tabulate(table, headers=headers)
-print '\n'
+print(tabulate(table, headers=headers))
+print('\n')
