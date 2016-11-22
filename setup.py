@@ -5,11 +5,11 @@ from distutils.core import setup
 
 setup(
     name='vasttrafik-api-wrapper',
-    version='1.0.0',
+    version='1.0.3',
     description='Västtrafik API wrapper.',
     long_description='Wrapper for Västtrafik public API.',
     url='https://github.com/axelniklasson/vasttrafik-api-wrapper',
-    download_url = 'https://github.com/axelniklasson/vasttrafik-api-wrapper/tarball/1.0.1',
+    download_url = 'https://github.com/axelniklasson/vasttrafik-api-wrapper/tarball/1.0.3',
     author='Axel Niklasson',
     author_email='axel.niklasson@live.com',
     license='MIT',
