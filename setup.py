@@ -9,7 +9,7 @@ setup(
     description='Västtrafik API wrapper.',
     long_description='Wrapper for Västtrafik public API.',
     url='https://github.com/axelniklasson/vasttrafik-api-wrapper',
-    download_url = 'https://github.com/axelniklasson/vasttrafik-api-wrapper/tarball/1.0.0',
+    download_url = 'https://github.com/axelniklasson/vasttrafik-api-wrapper/tarball/1.0.1',
     author='Axel Niklasson',
     author_email='axel.niklasson@live.com',
     license='MIT',
