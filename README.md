@@ -1,4 +1,8 @@
 # Västtrafik API wrapper
+[![PyPI version](https://badge.fury.io/py/vasttrafik.svg)](https://badge.fury.io/py/vasttrafik)
+[![GitHub issues](https://img.shields.io/github/issues/axelniklasson/vasttrafik-api-wrapper.svg)](https://github.com/axelniklasson/vasttrafik-api-wrapper/issues)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
 I recently had some spare time, so I decided to implement a Python wrapper to match the new release of Västtrafik's API. The goal is to provide wrappers for all endpoints in the journey planner API to make it easier to work with it.
 
 ## Getting started
