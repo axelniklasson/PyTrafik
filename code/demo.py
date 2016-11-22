@@ -9,8 +9,26 @@ client = Client(format='JSON')
 
 print('\n### API Wrapper DEMO ###')
 
-stops = client.get_stops_by_name('Brunnsparken')
-print('\n### Search results for "Brunnsparken" ###')
+vehiclePositions = client.get_livemap(12.246026, 57.831061, 11.544078, 57.533878)
+print('\n### Current vehicle positions')
+table = []
+for pos in vehiclePositions:
+	row = []
+	row.append(pos['name'])
+	row.append(pos['y'])
+	row.append(pos['x'])
+
+	delay = 0
+	if 'delay' in pos.keys():
+		delay = pos['delay']
+	row.append(delay)
+	table.append(row)
+
+headers = ['Name', 'Lat', 'Lon', 'Delay (minutes)']
+print(tabulate(table, headers=headers))
+
+stops = client.get_stops_by_name('Domkyrkan')
+print('\n### Search results for "Domkyrkan" ###')
 for stop in stops:
 	print(stop['name'])
 stop = stops[0]

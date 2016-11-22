@@ -76,6 +76,16 @@ class Client:
 	def calculate_trip(self, query_params=None):
 		return ''
 
+	## /livemap endpoint
+	def get_livemap(self, longitudeMax, latitudeMax, longitudeMin, latitudeMin, onlyRealtime='yes', query_params=None):
+		if longitudeMax is None or latitudeMax is None or longitudeMin is None or latitudeMin is None:
+			raise Exception('Error: Missing argument!')
+		data = self.get('/livemap?maxx=' + self.latlon_to_string_representation(longitudeMax) + '&maxy=' + self.latlon_to_string_representation(latitudeMax) + '&minx=' + self.latlon_to_string_representation(longitudeMin) + '&miny=' + self.latlon_to_string_representation(latitudeMin), query_params)
+		return data['livemap']['vehicles']
+
+	def latlon_to_string_representation(self, latlon):
+		return str(round(latlon * 1000000)).rstrip('0').rstrip('.')
+
 	## request builder
 	def get(self, endpoint, query_params=None):
 		url = API_BASE_URL + endpoint + self.format		
