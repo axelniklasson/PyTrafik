@@ -4,9 +4,9 @@
 from distutils.core import setup
 
 setup(
-    name='vasttrafik',
+    name='vasttrafik-api-wrapper',
     version='1.0.0',
-    description='Västtrafik API.',
+    description='Västtrafik API wrapper.',
     long_description='Wrapper for Västtrafik public API.',
     url='https://github.com/axelniklasson/vasttrafik-api-wrapper',
     download_url = 'https://github.com/axelniklasson/vasttrafik-api-wrapper/tarball/1.0.0',
@@ -26,5 +26,5 @@ setup(
     ],
     keywords='vasttrafik västtrafik',
     install_requires=['requests>=2.9.1'],
-    packages=['vasttrafik'],
+    packages=['vasttrafik-api-wrapper'],
     zip_safe=True)
