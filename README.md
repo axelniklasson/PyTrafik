@@ -1,5 +1,5 @@
 # Västtrafik API wrapper
-[![PyPI version](https://badge.fury.io/py/vasttrafik.svg)](https://badge.fury.io/py/vasttrafik)
+[![PyPI version](https://badge.fury.io/py/vasttrafik-api-wrapper.svg)](https://badge.fury.io/py/vasttrafik-api-wrapper)
 [![GitHub issues](https://img.shields.io/github/issues/axelniklasson/vasttrafik-api-wrapper.svg)](https://github.com/axelniklasson/vasttrafik-api-wrapper/issues)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
