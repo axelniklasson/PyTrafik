@@ -1,14 +1,17 @@
+# -*- coding: utf-8 -*-
 """ Setup for vasttrafik-api-wrapper """
 
-from setuptools import setup
+from distutils.core import setup
 
 setup(
     name='vasttrafik',
-    version='0.1.0',
+    version='1.0.0',
     description='Västtrafik API.',
     long_description='Wrapper for Västtrafik public API.',
     url='https://github.com/axelniklasson/vasttrafik-api-wrapper',
-    author='Alex Niklasson',
+    download_url = 'https://github.com/axelniklasson/vasttrafik-api-wrapper/tarball/1.0.0',
+    author='Axel Niklasson',
+    author_email='axel.niklasson@live.com',
     license='MIT',
     classifiers=[
         'Development Status :: 4 - Beta',
