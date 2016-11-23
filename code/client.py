@@ -5,10 +5,8 @@ import time as time_module
 
 TOKEN_URL = 'https://api.vasttrafik.se/token'
 API_BASE_URL = 'https://api.vasttrafik.se/bin/rest.exe/v2'
-CONSUMER_KEY = 'HfASuwOYBxDyhrnFdeaeUZyXmfwa'
-CONSUMER_SECRET = 'ffm5hj2ECT20QGJnbyLGSrDGFwEa'
-#CONSUMER_KEY = '<insert your CONSUMER_KEY here>'
-#CONSUMER_SECRET = '<insert your CONSUMER_SECRET here>'
+CONSUMER_KEY = '<insert your CONSUMER_KEY here>'
+CONSUMER_SECRET = '<insert your CONSUMER_SECRET here>'
 
 
 def fetchToken():
@@ -27,7 +25,7 @@ class Client:
 	def __init__(self, format):
 		self.token = fetchToken()
 		if format == 'JSON':
-			self.format = 'json'
+			self.format = '&format=json'
 		else:
 			# default is XML
 			self.format = ''
@@ -39,8 +37,7 @@ class Client:
 	## /location endpoint
 	# /location.allstops
 	def get_all_stops(self, query_params=None):
-		data = self.get('/location.allstops')
-		return data['LocationList']['StopLocation']
+		raise Exception('Error: Can\'t get this endpoint to work. No idea why. Should be implemented in future.')
 
 	# /location.nearbystops
 	def get_nearby_stops(self, lat, long, query_params=None):
@@ -91,16 +88,11 @@ class Client:
 
 	## request builder
 	def get(self, endpoint, query_params=None):
-		url = API_BASE_URL + endpoint	
+		url = API_BASE_URL + endpoint + self.format		
 
 		if query_params is not None:
 			for key in query_params:
 				url += '&' + key + '=' + query_params[key]
-			url += '&format=' + self.format
-		elif '?' in url:
-			url += '&format=' + self.format
-		else: 
-			url += '?format=' + self.format
 
 		headers = {
 			'Authorization': 'Bearer ' + self.token
