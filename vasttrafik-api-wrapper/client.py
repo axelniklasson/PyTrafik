@@ -25,7 +25,7 @@ class Client:
 	def __init__(self, format, key=CONSUMER_KEY, secret=CONSUMER_SECRET):
 		self.token = fetchToken(key, secret)
 		if format == 'JSON':
-			self.format = '&format=json'
+			self.format = 'json'
 		else:
 			# default is XML
 			self.format = ''
@@ -37,7 +37,8 @@ class Client:
 	## /location endpoint
 	# /location.allstops
 	def get_all_stops(self, query_params=None):
-		raise Exception('Error: Can\'t get this endpoint to work. No idea why. Should be implemented in future.')
+		data = self.get('/location.allstops')
+		return data['LocationList']['StopLocation']
 
 	# /location.nearbystops
 	def get_nearby_stops(self, lat, long, query_params=None):
@@ -88,11 +89,16 @@ class Client:
 
 	## request builder
 	def get(self, endpoint, query_params=None):
-		url = API_BASE_URL + endpoint + self.format		
+		url = API_BASE_URL + endpoint	
 
 		if query_params is not None:
 			for key in query_params:
 				url += '&' + key + '=' + query_params[key]
+			url += '&format=' + self.format
+		elif '?' in url:
+			url += '&format=' + self.format
+		else: 
+			url += '?format=' + self.format
 
 		headers = {
 			'Authorization': 'Bearer ' + self.token
