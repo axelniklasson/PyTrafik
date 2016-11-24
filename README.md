@@ -1,6 +1,5 @@
 # PyTrafik
-[![PyPI version](https://badge.fury.io/py/PyTrafik.svg)](https://badge.fury.io/py/PyTrafik)
-[![GitHub issues](https://img.shields.io/github/issues/axelniklasson/PyTrafik.svg)](https://github.com/axelniklasson/PyTrafik/issues)
+[![PyPI version](https://badge.fury.io/py/pytrafik.svg)](https://badge.fury.io/py/pytrafik)[![GitHub issues](https://img.shields.io/github/issues/axelniklasson/PyTrafik.svg)](https://github.com/axelniklasson/PyTrafik/issues)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 I recently had some spare time, so I decided to implement a Python wrapper to match the new release of Västtrafik's API. The goal is to provide wrappers for all endpoints in the journey planner API to make it easier to work with it.
