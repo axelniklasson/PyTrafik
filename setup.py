@@ -5,11 +5,11 @@ from distutils.core import setup
 
 setup(
     name='pytrafik',
-    version='0.1',
+    version='0.2',
     description='PyTrafik',
     long_description='Wrapper for Västtrafik public API.',
     url='https://github.com/axelniklasson/PyTrafik',
-    download_url = 'https://github.com/axelniklasson/PyTrafik/tarball/0.1',
+    download_url = 'https://github.com/axelniklasson/PyTrafik/tarball/0.2',
     author='Axel Niklasson',
     author_email='hello@axelniklasson.se',
     license='MIT',
