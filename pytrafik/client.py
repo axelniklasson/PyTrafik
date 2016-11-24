@@ -5,9 +5,8 @@ import time as time_module
 
 TOKEN_URL = 'https://api.vasttrafik.se/token'
 API_BASE_URL = 'https://api.vasttrafik.se/bin/rest.exe/v2'
-CONSUMER_KEY = '<insert your CONSUMER_KEY here>'
-CONSUMER_SECRET = '<insert your CONSUMER_SECRET here>'
-
+CONSUMER_KEY = 'WbM_ffNzvNRka6k2NGLuk9dUlfMa'
+CONSUMER_SECRET = 'I91CQDwoleF_ahfygReEC1XHSPsa'
 
 def fetchToken(key, secret):
 	headers = {
@@ -21,14 +20,20 @@ def fetchToken(key, secret):
 	return obj['access_token']
 
 class Client:
+    
+        def __init__(self, format):
+                if format == 'JSON' or format == 'json':
+                    self.format = 'json'
+                else:
+                    self.format = '' # defaulting to XML
+                  
 
 	def __init__(self, format, key=CONSUMER_KEY, secret=CONSUMER_SECRET):
 		self.token = fetchToken(key, secret)
-		if format == 'JSON':
-			self.format = 'json'
-		else:
-			# default is XML
-			self.format = ''
+                if format == 'JSON' or format == 'json':
+                    self.format = 'json'
+                else:
+                    self.format = '' # defaulting to XML
 
 	## /journeyDetail endpoint
 	def get_journey_detail(self, ref, query_params=None):
@@ -104,6 +109,7 @@ class Client:
 			'Authorization': 'Bearer ' + self.token
 		}
 		res = requests.get(url, headers=headers)
+                print url
 		if res.status_code == 200:
 			return json.loads(res.content.decode('UTF-8'), 'UTF-8')
 		else:
