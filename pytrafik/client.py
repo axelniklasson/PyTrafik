@@ -20,20 +20,13 @@ def fetchToken(key, secret):
 	return obj['access_token']
 
 class Client:
-    
-        def __init__(self, format):
-                if format == 'JSON' or format == 'json':
-                    self.format = 'json'
-                else:
-                    self.format = '' # defaulting to XML
-                  
 
 	def __init__(self, format, key=CONSUMER_KEY, secret=CONSUMER_SECRET):
 		self.token = fetchToken(key, secret)
-                if format == 'JSON' or format == 'json':
-                    self.format = 'json'
-                else:
-                    self.format = '' # defaulting to XML
+		if format == 'JSON' or format == 'json':
+			self.format = 'json'
+		else:
+			self.format = '' # defaulting to XML
 
 	## /journeyDetail endpoint
 	def get_journey_detail(self, ref, query_params=None):
@@ -65,7 +58,7 @@ class Client:
 		if date is not None and time is not None:
 			data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + date + '&time=' + time, query_params)
 		else:
-			data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + time_module.strftime("%Y-%m-%d") + 
+			data = self.get('/arrivalBoard?id=' + str(stopID) + '&date=' + time_module.strftime("%Y-%m-%d") +
 			'&time=' + time_module.strftime("%H:%M"), query_params)
 		return data['ArrivalBoard']['Arrival']
 
@@ -74,7 +67,7 @@ class Client:
 		if date is not None and time is not None:
 			data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + date + '&time=' + time, query_params)
 		else:
-			data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time_module.strftime("%Y-%m-%d") + 
+			data = self.get('/departureBoard?id=' + str(stopID) + '&date=' + time_module.strftime("%Y-%m-%d") +
 			'&time=' + time_module.strftime("%H:%M"), query_params)
 		return data['DepartureBoard']['Departure']
 
@@ -94,7 +87,7 @@ class Client:
 
 	## request builder
 	def get(self, endpoint, query_params=None):
-		url = API_BASE_URL + endpoint	
+		url = API_BASE_URL + endpoint
 
 		if query_params is not None:
 			for key in query_params:
@@ -102,14 +95,14 @@ class Client:
 			url += '&format=' + self.format
 		elif '?' in url:
 			url += '&format=' + self.format
-		else: 
+		else:
 			url += '?format=' + self.format
 
 		headers = {
 			'Authorization': 'Bearer ' + self.token
 		}
 		res = requests.get(url, headers=headers)
-                print url
+		print (url)
 		if res.status_code == 200:
 			return json.loads(res.content.decode('UTF-8'), 'UTF-8')
 		else:
