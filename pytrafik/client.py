@@ -104,6 +104,6 @@ class Client:
 		res = requests.get(url, headers=headers)
 		print (url)
 		if res.status_code == 200:
-			return json.loads(res.content.decode('UTF-8'), 'UTF-8')
+			return json.loads(res.content.decode('UTF-8'))
 		else:
 			raise Exception('Error: ' + str(res.status_code) + str(res.content))
