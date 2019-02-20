@@ -40,8 +40,9 @@ Done!
 The new API uses OAuth2 as authorization and in order to acquire CONSUMER_KEY and CONSUMER_SECRET from the API, one needs to subscribe to it. Please refer to [Västtrafik](https://labs.vasttrafik.se) in to get your API credentials.
 
 ## Version history
-* 24/11 - Version 0.2 is released. Some more endpoints covered and renaming to PyTrafik.
-* 22/11 - Version 0.1 is released!
+* 20/2 2019  - Version 0.2.1 - Python 3/3.6 improvements
+* 24/11 2016 - Some more endpoints covered and renaming to PyTrafik.
+* 22/11 2016 - First release!
 
 ## Contributing
 Pull Requests are always welcome and should be submitted to the development branch.
@@ -49,3 +50,4 @@ Pull Requests are always welcome and should be submitted to the development bran
 ### Contributors
 * [persandstrom](https://github.com/persandstrom) - Support for Python 3, pip install and improved Client constructor.
 * [erikkinding](https://github.com/erikkinding) - Code for livemap endpoint and all stops.
+* [platisd](https://github.com/platisd) - Python 3/3.6 compatibility

@@ -5,7 +5,7 @@ from distutils.core import setup
 
 setup(
     name='pytrafik',
-    version='0.2',
+    version='0.2.1',
     description='PyTrafik',
     long_description='Wrapper for Västtrafik public API.',
     url='https://github.com/axelniklasson/PyTrafik',
